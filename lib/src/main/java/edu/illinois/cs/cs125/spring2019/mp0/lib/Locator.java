@@ -74,7 +74,14 @@ public class Locator {
     public static boolean beenHere(final int currentIndex,
                             final double[] latitudes, final double[] longitudes,
                             final boolean[] validLocations) {
-        kjsfdfhjb:
+        for (int i = 0; i < validLocations.length; i++) {
+            if (validLocations[i] && i != currentIndex) {
+                if (latitudes[i] == latitudes[currentIndex] && longitudes[i] == longitudes[currentIndex]) {
+                    return true;
+                }
+
+            }
+        }
         return false;
     }
 
@@ -104,6 +111,7 @@ public class Locator {
     public static double[] nextRandomLocation(final double currentLatitude, final double currentLongitude,
                                        final double transitionProbability,
                                        final double latitudeChange, final double longitudeChange) {
+
         return new double[] {0.0, 0.0};
     }
 }
