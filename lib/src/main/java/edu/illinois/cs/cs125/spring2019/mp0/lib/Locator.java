@@ -47,38 +47,14 @@ public class Locator {
      */
     public static int farthestNorth(final double[] latitudes, final double[] longitudes,
                                     final boolean[] validLocations) {
-        if (latitudes == null || latitudes.length == 0 || longitudes == null || longitudes == 0 || validLocations == null || validLocations == 0) {
-            return -1;
-        }
-        int numRealPlaces = 0;
-        for (int i = 0; i < validLocations.length; i++) {
-            if (validLocations[i]) {
-                numRealPlaces++;
-            }
-        }
-        if (numRealPlaces == 0) {
-            return -1;
-        }
-        double[] realLats = new double[numRealPlaces];
+        int indexN = -1;
+        double min = MIN_LATITUDE;
         for (int i = 0; i < latitudes.length; i++) {
-            if (validLocations[i]) {
-                for (int j = 0; j < numRealPlaces; j++) {
-                    realLats[j] = latitudes[i];
-                }
-            }
-        } double mostN = realLats[0];
-        for (int i = 0; i < realLats.length; i++) {
-            if (realLats[i] > mostN) {
-                mostN = realLats[i];
-            }
-        }
-        int indexN = 0;
-        for (int i = 0; i < latitudes.length; i++) {
-            if (mostN > latitudes[i]) {
+            if (validLocations[i] && latitudes[i] > min) {
+                min = latitudes[i];
                 indexN = i;
             }
         }
-        //dkjfsfkdjg
         return indexN;
     }
 
