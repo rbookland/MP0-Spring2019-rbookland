@@ -111,6 +111,12 @@ public class Locator {
     public static double[] nextRandomLocation(final double currentLatitude, final double currentLongitude,
                                        final double transitionProbability,
                                        final double latitudeChange, final double longitudeChange) {
+        //randomA is > randomB 50%. (randomA*2/3) is > (randomB*1/3) 2/3 times. So (randomA*TP) > random*(1-TP) TP times
+
+        double newLatitude = currentLatitude;
+        double newLongiude = currentLongitude;
+
+
 
         return new double[] {0.0, 0.0};
     }
