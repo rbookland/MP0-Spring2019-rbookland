@@ -20,6 +20,7 @@ public class Locator {
     /** Maximum valid longitude. */
     public static final double MAX_LONGITUDE = 180.0;
 
+    /**Minimum valid longitude. */
     public static final double MIN_LONGITUDE = -180.0;
 
     /** Random number generator for use by this class. */
@@ -111,11 +112,25 @@ public class Locator {
     public static double[] nextRandomLocation(final double currentLatitude, final double currentLongitude,
                                        final double transitionProbability,
                                        final double latitudeChange, final double longitudeChange) {
+        double newLat = 0.0;
+        double newLong = 0.0;
         double random1 = Math.random() * transitionProbability;
         double random2 = Math.random() * (1 - transitionProbability);
-        if (random1 < random2 ) {
+        if (random1 < random2) {
             return new double[] {currentLatitude, currentLongitude};
+        } else {
+            newLat = currentLatitude + latitudeChange;
+            newLong = currentLongitude + longitudeChange;
         }
-        return new double[] {0.0, 0.0};
+        if (newLat > MAX_LATITUDE) {
+            newLat = MAX_LATITUDE;
+        } if (newLat < MIN_LATITUDE) {
+            newLat = MIN_LATITUDE;
+        } if (newLong > MAX_LONGITUDE) {
+            newLong = MAX_LONGITUDE;
+        } if (newLong < MIN_LONGITUDE) {
+            newLong = MIN_LONGITUDE;
+        }
+        return new double[] {newLat, newLong};
     }
 }
