@@ -114,9 +114,8 @@ public class Locator {
                                        final double latitudeChange, final double longitudeChange) {
         double newLat = 0.0;
         double newLong = 0.0;
-        double random1 = Math.random() * transitionProbability;
-        double random2 = Math.random() * (1 - transitionProbability);
-        if (random1 < random2) {
+        double soRandom = Math.random();
+        if (transitionProbability <= soRandom) {
             return new double[] {currentLatitude, currentLongitude};
         } else {
             newLat = currentLatitude + latitudeChange;
